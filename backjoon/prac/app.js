@@ -1,15 +1,10 @@
 // "/dev/stdin"
 
-let input = require("fs").readFileSync("./input.txt").toString().split("\n");
+let input = require("fs").readFileSync("./input.txt").toString();
 
-const testNum = +input[0];
+let star = "";
 
-for (let i = 1; i <= testNum; i++) {
-  const arr = input[i].split(" ").map((val) => +val);
-
-  let a = arr[0];
-  let b = arr[1];
-  let c = a + b;
-
-  console.log(`Case #${i}: ${a} + ${b} = ${c}`);
+for (let i = 0; i < input; i++) {
+  star += "*";
+  console.log(star);
 }
