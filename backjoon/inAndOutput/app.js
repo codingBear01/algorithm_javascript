@@ -1,16 +1,21 @@
-// 472
-// 385
+// 100
+// "/dev/stdin"
 
 const fs = require("fs");
-const [A, B] = fs.readFileSync("./input.txt").toString().split("\n");
-const [B0, B1, B2] = B.split("");
+const [A, B] = fs
+  .readFileSync("./input.txt")
+  .toString()
+  .split(" ")
+  .map((val) => +val);
 
-const result3 = A * B2;
-const result4 = A * B1;
-const result5 = A * B0;
-const result6 = A * B;
-
-console.log(result3);
-console.log(result4);
-console.log(result5);
-console.log(result6);
+if (A >= 90) {
+  console.log("A");
+} else if (A >= 80 && A < 90) {
+  console.log("B");
+} else if (A >= 70 && A < 80) {
+  console.log("C");
+} else if (A >= 60 && A < 70) {
+  console.log("D");
+} else {
+  console.log("F");
+}

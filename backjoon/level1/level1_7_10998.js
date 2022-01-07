@@ -14,7 +14,7 @@
 // 10-9 이하의 오차를 허용한다는 말은 꼭 소수 9번째 자리까지만 출력하라는 뜻이 아니다.
 
 const fs = require("fs");
-let input = fs.readFileSync("./input.txt").toString().split(" ");
+let input = fs.readFileSync("/dev/stdin").toString().split(" ");
 
 let a = +input[0];
 let b = +input[1];

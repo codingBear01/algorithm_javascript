@@ -19,7 +19,7 @@
 // 181720
 
 const fs = require("fs");
-const [A, B] = fs.readFileSync("./input.txt").toString().split("\n");
+const [A, B] = fs.readFileSync("/dev/stdin").toString().split("\n");
 const [B0, B1, B2] = B.split("");
 
 const result3 = A * B2;
