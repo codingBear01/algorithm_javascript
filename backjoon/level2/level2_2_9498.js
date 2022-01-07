@@ -13,7 +13,7 @@
 // A
 
 const fs = require("fs");
-const [A, B] = fs
+const A = fs
   .readFileSync("/dev/stdin")
   .toString()
   .split(" ")

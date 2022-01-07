@@ -1,8 +1,8 @@
-// 100
+// 2000
 // "/dev/stdin"
 
 const fs = require("fs");
-const [A, B] = fs
+const A = fs
   .readFileSync("./input.txt")
   .toString()
   .split(" ")
