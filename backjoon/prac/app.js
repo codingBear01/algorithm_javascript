@@ -2,15 +2,13 @@
 // 3
 // 1+2+3
 
-const fs = require("fs");
-let input = fs.readFileSync("./input.txt").toString().trim().split("\n");
+let input = require("fs").readFileSync("./input.txt").toString().trim();
+input = +input;
 
-let max = +input[0];
 let answer = "";
 
-for (let i = 1; i <= max; i++) {
-  let num = input[i].split(" ").map((val) => +val);
-  answer += num[0] + num[1] + "\n";
+for (let i = 1; i <= input; i++) {
+  answer += i + "\n";
 }
 
 console.log(answer);
