@@ -9,6 +9,7 @@ for (let i = 1; i <= testNum; i++) {
 
   let a = arr[0];
   let b = arr[1];
+  let c = a + b;
 
-  console.log(`Case #${i}: ${a + b}`);
+  console.log(`Case #${i}: ${a} + ${b} = ${c}`);
 }
