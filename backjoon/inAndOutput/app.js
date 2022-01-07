@@ -1,13 +1,16 @@
-// 7 3
+// 472
+// 385
 
 const fs = require("fs");
-let input = fs.readFileSync("./input.txt").toString().split(" ");
+const [A, B] = fs.readFileSync("./input.txt").toString().split("\n");
+const [B0, B1, B2] = B.split("");
 
-let a = +input[0];
-let b = +input[1];
+const result3 = A * B2;
+const result4 = A * B1;
+const result5 = A * B0;
+const result6 = A * B;
 
-console.log(a + b);
-console.log(a - b);
-console.log(a * b);
-console.log(Math.floor(a / b));
-console.log(a % b);
+console.log(result3);
+console.log(result4);
+console.log(result5);
+console.log(result6);
