@@ -19,3 +19,12 @@
 // 1999
 // 예제 출력 2
 // 0
+
+const fs = require("fs");
+const A = fs.readFileSync("/dev/stdin").toString().split(" ");
+
+if ((A % 4 == 0 && A % 100 != 0) || A % 400 == 0) {
+  console.log(1);
+} else {
+  console.log(0);
+}
