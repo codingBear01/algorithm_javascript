@@ -1,30 +1,16 @@
-// 2000
 // "/dev/stdin"
 
-const readline = require("readline");
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+const input = require("fs")
+  .readFileSync("./input.txt")
+  .toString()
+  .split(" ")
+  .map((val) => +val);
 
-let input = [];
+let h = input[0];
+let m = input[1];
 
-rl.on("line", function (line) {
-  input.push(parseInt(line));
-}).on("close", function () {
-  ///////////////////////////////
-  const x = input[0];
-  const y = input[1];
+let date = new Date(2022, 1, 7, h, m);
 
-  if (x > 0 && y > 0) {
-    console.log(1);
-  } else if (x < 0 && y > 0) {
-    console.log(2);
-  } else if (x < 0 && y < 0) {
-    console.log(3);
-  } else if (x > 0 && y < 0) {
-    console.log(4);
-  }
-  /////////////////////////////
-  process.exit();
-});
+date.setMinutes(date.getMinutes() - 45);
+
+console.log(date.getHours(), date.getMinutes());
