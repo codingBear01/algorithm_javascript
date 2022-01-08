@@ -12,12 +12,8 @@ let result = "";
 while (i <= input.length - 1) {
   let a = +input[i].split(" ")[0];
   let b = +input[i].split(" ")[1];
+  result += `${a + b}` + "\n";
 
-  if (a != 0 || b != 0) {
-    result += `${a + b}` + "\n";
-  } else {
-    break;
-  }
   i++;
 }
 
