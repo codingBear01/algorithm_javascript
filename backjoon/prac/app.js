@@ -6,13 +6,19 @@ let input = require("fs")
   .trim()
   .split("\n");
 
-const num = +input[0];
-const score = input[1].split(" ");
-const max = Math.max(...score);
-let sum = 0;
+let num = +input[0];
 
-for (let i = 0; i < num; i++) {
-  sum += (score[i] / max) * 100;
+for (let i = 1; i <= num; i++) {
+  let count = 0;
+  let sum = 0;
+
+  for (let j = 0; j < input[i].length; j++) {
+    if (input[i][j] == "O") {
+      count++;
+    } else {
+      count = 0;
+    }
+    sum += count;
+  }
+  console.log(sum);
 }
-
-console.log(sum / num);
