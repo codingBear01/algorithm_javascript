@@ -7,8 +7,15 @@ let input = require("fs")
   .split("\n")
   .map((val) => +val);
 
-let max = Math.max.apply(null, input);
-let maxIndex = input.indexOf(max);
+let max = input[0];
+let maxIdx = 0;
+
+for (let i = 1; i < 9; i++) {
+  if (max < input[i]) {
+    max = input[i];
+    maxIdx = i;
+  }
+}
 
 console.log(max);
-console.log(maxIndex + 1);
+console.log(maxIdx + 1);
