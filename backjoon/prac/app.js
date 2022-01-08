@@ -9,16 +9,22 @@ let input = require("fs")
 let num = +input[0];
 
 for (let i = 1; i <= num; i++) {
-  let count = 0;
+  let arr = input[i].split(" ").map((val) => +val);
+  let studentNum = arr[0];
   let sum = 0;
 
-  for (let j = 0; j < input[i].length; j++) {
-    if (input[i][j] == "O") {
-      count++;
-    } else {
-      count = 0;
-    }
-    sum += count;
+  for (let j = 1; j <= studentNum; j++) {
+    sum += arr[j];
   }
-  console.log(sum);
+  let avg = sum / studentNum;
+
+  let count = 0;
+
+  for (let k = 1; k <= studentNum; k++) {
+    if (arr[k] > avg) {
+      count++;
+    }
+  }
+  result = ((count / studentNum) * 100).toFixed(3);
+  console.log(`${result}%`);
 }
