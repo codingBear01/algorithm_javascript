@@ -1,16 +1,19 @@
 // "/dev/stdin"
 
-let input = require("fs").readFileSync("./input.txt").toString();
-num = +input;
+let input = require("fs").readFileSync("./input.txt").toString().split("\n");
 
-let star = "";
-let blank = "";
+let num = input[0].split(" ");
 
-for (let i = 1; i <= num; i++) {
-  star += "*";
-  for (let j = 0; j < num - i; j++) {
-    blank += " ";
+let N = +num[0];
+let X = +num[1];
+let A = input[1].split(" ");
+
+let result = "";
+
+for (let i = 0; i < N; i++) {
+  if (+A[i] < X) {
+    result = result + A[i] + " ";
   }
-  console.log(blank + star);
-  blank = "";
 }
+
+console.log(result);
