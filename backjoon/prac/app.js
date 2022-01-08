@@ -4,15 +4,15 @@ let input = require("fs")
   .readFileSync("./input.txt")
   .toString()
   .trim()
-  .split("\n")
-  .map((val) => +val);
+  .split("\n");
 
-let num = input;
-let arr = [];
+const num = +input[0];
+const score = input[1].split(" ");
+const max = Math.max(...score);
+let sum = 0;
 
-for (let i = 0; i < num.length; i++) {
-  arr.push(num[i] % 42);
+for (let i = 0; i < num; i++) {
+  sum += (score[i] / max) * 100;
 }
 
-let result = Array.from(new Set(arr));
-console.log(result.length);
+console.log(sum / num);
