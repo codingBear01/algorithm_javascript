@@ -1,20 +1,29 @@
 // "/dev/stdin"
 
-let input = require("fs").readFileSync("./input.txt").toString().trim();
+let input = require("fs")
+  .readFileSync("./input.txt")
+  .toString()
+  .trim()
+  .split("\n");
 
-let num = input;
-let sum;
-let i = 0;
+const num = +input[0];
+const arr = input[1].split(" ").map((val) => +val);
 
-while (true) {
-  i++;
+// arr.sort((a, b) => a - b);
+// console.log(arr[0], arr[num - 1]);
 
-  sum = Math.floor(num / 10) + (num % 10);
-  num = (num % 10) * 10 + (sum % 10);
+let min = arr[0];
+let max = arr[0];
 
-  if (input == num) {
-    break;
+for (let i = 0; i < num; i++) {
+  console.log(arr[i]);
+
+  if (min > arr[i]) {
+    min = arr[i];
+  }
+
+  if (max < arr[i]) {
+    max = arr[i];
   }
 }
-
-console.log(i);
+console.log(min, max);
