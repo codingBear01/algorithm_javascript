@@ -1,32 +1,26 @@
 // "/dev/stdin"
 
-function NotSelfnumber(N) {
-  let sum = N;
+let fs = require("fs");
+let input = fs.readFileSync("./input.txt").toString();
 
-  while (true) {
-    if (N == 0) break;
-    sum += N % 10;
-    N = parseInt(N / 10);
-  }
-  return sum;
-}
+let num = Number(input);
 
-function selfnumber(N) {
-  let selfnum = [];
-  let result = [];
+function hansu(n) {
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    let hundredNumber = Math.floor((i % 1000) / 100);
+    let tenNumber = Math.floor((i % 100) / 10);
+    let oneNumber = i % 10;
 
-  for (let i = 1; i <= N; i++) {
-    let index = NotSelfnumber(i);
-
-    if (index <= N) {
-      selfnum[index] = true;
+    if (i < 100) {
+      // n이 한자리 수 혹은 두자리 수 일 때
+      count++;
+    } else if (100 <= i && i < 1000) {
+      if (hundredNumber - tenNumber === tenNumber - oneNumber) {
+        count++;
+      }
     }
   }
-
-  for (let i = 1; i <= N; i++) {
-    if (!selfnum[i]) result.push(i);
-  }
-  console.log(result.join("\n"));
+  return count;
 }
-
-selfnumber(10000);
+console.log(hansu(num));
