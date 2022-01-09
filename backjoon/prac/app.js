@@ -1,30 +1,32 @@
 // "/dev/stdin"
 
-let input = require("fs")
-  .readFileSync("./input.txt")
-  .toString()
-  .trim()
-  .split("\n");
+function NotSelfnumber(N) {
+  let sum = N;
 
-let num = +input[0];
-
-for (let i = 1; i <= num; i++) {
-  let arr = input[i].split(" ").map((val) => +val);
-  let studentNum = arr[0];
-  let sum = 0;
-
-  for (let j = 1; j <= studentNum; j++) {
-    sum += arr[j];
+  while (true) {
+    if (N == 0) break;
+    sum += N % 10;
+    N = parseInt(N / 10);
   }
-  let avg = sum / studentNum;
+  return sum;
+}
 
-  let count = 0;
+function selfnumber(N) {
+  let selfnum = [];
+  let result = [];
 
-  for (let k = 1; k <= studentNum; k++) {
-    if (arr[k] > avg) {
-      count++;
+  for (let i = 1; i <= N; i++) {
+    let index = NotSelfnumber(i);
+
+    if (index <= N) {
+      selfnum[index] = true;
     }
   }
-  result = ((count / studentNum) * 100).toFixed(3);
-  console.log(`${result}%`);
+
+  for (let i = 1; i <= N; i++) {
+    if (!selfnum[i]) result.push(i);
+  }
+  console.log(result.join("\n"));
 }
+
+selfnumber(10000);
