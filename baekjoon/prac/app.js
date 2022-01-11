@@ -1,21 +1,31 @@
-// "/dev/stdin"
-// 734 893
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
+let input = fs.readFileSync(filePath).toString().trim();
 
-let input = require("fs")
-  .readFileSync("./input.txt")
-  .toString()
-  .trim()
-  .split(" ");
+const alphabets = input.split("");
 
-let arr1 = [];
-let arr2 = [];
+let minTime = alphabets.length;
 
-for (let i = 0; i < input.length; i++) {
-  let reversedNum = input[i].split("").reverse();
-  arr1.push(reversedNum);
-  let newVal = arr1[i].join("");
-  arr2.push(newVal);
+for (let i = 0; i < alphabets.length; i++) {
+  const ascii = alphabets[i].charCodeAt();
+
+  if (ascii <= "C".charCodeAt()) {
+    minTime += 2;
+  } else if (ascii <= "F".charCodeAt()) {
+    minTime += 3;
+  } else if (ascii <= "I".charCodeAt()) {
+    minTime += 4;
+  } else if (ascii <= "L".charCodeAt()) {
+    minTime += 5;
+  } else if (ascii <= "O".charCodeAt()) {
+    minTime += 6;
+  } else if (ascii <= "S".charCodeAt()) {
+    minTime += 7;
+  } else if (ascii <= "V".charCodeAt()) {
+    minTime += 8;
+  } else if (ascii <= "Z".charCodeAt()) {
+    minTime += 9;
+  }
 }
 
-let result = arr2[0] > arr2[1] ? arr2[0] : arr2[1];
-console.log(result);
+console.log(minTime);
