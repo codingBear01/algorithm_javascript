@@ -1,29 +1,21 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim().split("\n");
+let input = fs.readFileSync(filePath).toString().trim().split(" ");
 
-const caseCount = Number(input[0]);
-let countGroupWord = 0;
+let A = Number(input[0]);
+let B = Number(input[1]);
+let C = Number(input[2]);
 
-for (let i = 1; i <= caseCount; i++) {
-  const word = input[i];
-  const letter = [];
-  let isGroupWord = true;
+let N = A / (C - B);
 
-  for (let j = 0; j < word.length; j++) {
-    if (letter.indexOf(word[j]) === -1) {
-      letter.push(word[j]);
-    } else {
-      if (letter.indexOf(word[j]) !== letter.length - 1) {
-        isGroupWord = false;
-        break;
-      }
-    }
-  }
+let answer = Math.floor(N) + 1;
 
-  if (isGroupWord) {
-    countGroupWord += 1;
-  }
-}
+B >= C ? (answer = -1) : answer;
 
-console.log(countGroupWord);
+console.log(answer);
+
+// BREAK-EVEN POINT = C * 판매대수 > (A + (B * 판매대수))
+// 한 대 생산비 = 1000 + 70 * 1 = 1070
+// 한 대 매출 = 170 * 1 = 170
+// 판매대수를 for 돌려야 댐 ㅇㅅㅇ
+// while? for?
