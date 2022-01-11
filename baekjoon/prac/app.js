@@ -1,31 +1,29 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim();
+let input = fs.readFileSync(filePath).toString().trim().split("\n");
 
-const alphabets = input.split("");
+const caseCount = Number(input[0]);
+let countGroupWord = 0;
 
-let minTime = alphabets.length;
+for (let i = 1; i <= caseCount; i++) {
+  const word = input[i];
+  const letter = [];
+  let isGroupWord = true;
 
-for (let i = 0; i < alphabets.length; i++) {
-  const ascii = alphabets[i].charCodeAt();
+  for (let j = 0; j < word.length; j++) {
+    if (letter.indexOf(word[j]) === -1) {
+      letter.push(word[j]);
+    } else {
+      if (letter.indexOf(word[j]) !== letter.length - 1) {
+        isGroupWord = false;
+        break;
+      }
+    }
+  }
 
-  if (ascii <= "C".charCodeAt()) {
-    minTime += 2;
-  } else if (ascii <= "F".charCodeAt()) {
-    minTime += 3;
-  } else if (ascii <= "I".charCodeAt()) {
-    minTime += 4;
-  } else if (ascii <= "L".charCodeAt()) {
-    minTime += 5;
-  } else if (ascii <= "O".charCodeAt()) {
-    minTime += 6;
-  } else if (ascii <= "S".charCodeAt()) {
-    minTime += 7;
-  } else if (ascii <= "V".charCodeAt()) {
-    minTime += 8;
-  } else if (ascii <= "Z".charCodeAt()) {
-    minTime += 9;
+  if (isGroupWord) {
+    countGroupWord += 1;
   }
 }
 
-console.log(minTime);
+console.log(countGroupWord);
