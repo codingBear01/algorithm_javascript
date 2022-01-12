@@ -1,15 +1,32 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim();
-input = +input;
+X = +input;
 
-let range = 1,
-  block = 1;
+let groupCounter = 0;
+let ascendingNumArr = [];
+let descendingNumArr = [];
 
-while (block < input) {
-  block += 6 * range;
-
-  range++;
+while (X > 0) {
+  groupCounter++;
+  X = X - groupCounter;
 }
 
-console.log(range);
+for (let i = 0; i < groupCounter; i++) {
+  ascendingNumArr.push(i + 1);
+  descendingNumArr.push(groupCounter - i);
+}
+
+if (groupCounter % 2 === 0) {
+  console.log(
+    `${ascendingNumArr[groupCounter - 1 + X]}/${
+      descendingNumArr[groupCounter - 1 + X]
+    }`
+  );
+} else {
+  console.log(
+    `${descendingNumArr[groupCounter - 1 + X]}/${
+      ascendingNumArr[groupCounter - 1 + X]
+    }`
+  );
+}
