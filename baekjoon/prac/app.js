@@ -1,32 +1,14 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim();
-X = +input;
+let input = fs
+  .readFileSync(filePath)
+  .toString()
+  .trim()
+  .split(" ")
+  .map((val) => +val);
 
-let groupCounter = 0;
-let ascendingNumArr = [];
-let descendingNumArr = [];
+const A = input[0];
+const B = input[1];
+const V = input[2];
 
-while (X > 0) {
-  groupCounter++;
-  X = X - groupCounter;
-}
-
-for (let i = 0; i < groupCounter; i++) {
-  ascendingNumArr.push(i + 1);
-  descendingNumArr.push(groupCounter - i);
-}
-
-if (groupCounter % 2 === 0) {
-  console.log(
-    `${ascendingNumArr[groupCounter - 1 + X]}/${
-      descendingNumArr[groupCounter - 1 + X]
-    }`
-  );
-} else {
-  console.log(
-    `${descendingNumArr[groupCounter - 1 + X]}/${
-      ascendingNumArr[groupCounter - 1 + X]
-    }`
-  );
-}
+console.log(Math.ceil(V - B / (A - B)));
