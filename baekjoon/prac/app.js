@@ -1,28 +1,39 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim().split("\n");
+let input = fs
+  .readFileSync(filePath)
+  .toString()
+  .trim()
+  .split("\n")
+  .map((val) => +val);
 
-let arr = input[1].split(" ").map((val) => +val);
-let ans = 0;
+const primeNumArr = [];
+let primeNumSum = 0;
 
-for (let i = 0; i < arr.length; i++) {
-  if (arr[i] === 1) {
-    continue;
-  } else {
-    let cnt = 0;
+function primeNumber(n) {
+  if (n < 2) {
+    return;
+  }
 
-    for (let j = 2; j < arr[i]; j++) {
-      if (arr[i] % j === 0) {
-        cnt++;
-      }
-    }
-    if (cnt === 0) {
-      ans++;
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return;
     }
   }
+  primeNumArr.push(n);
+  primeNumSum += n;
 }
-console.log(ans);
 
-// arr[i] / 1000>= 나눴을 때
-// 나머지 0 되는 게 2개이면? true(소수)
-// 아니면? X
+const begin = parseInt(input.shift());
+const end = parseInt(input.shift());
+
+for (let i = begin; i <= end; i++) {
+  primeNumber(i);
+}
+
+if (!primeNumArr.length) {
+  console.log(-1);
+} else {
+  console.log(primeNumSum);
+  console.log(Math.min.apply(null, primeNumArr));
+}
