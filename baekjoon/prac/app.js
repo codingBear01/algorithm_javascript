@@ -7,26 +7,13 @@ let input = fs
   .split(" ")
   .map((val) => +val);
 
-let a = input[0];
-let b = input[1];
-let arr = [];
-let answer = "";
-for (let i = 0; i <= b; i++) {
-  arr.push(true);
-}
-arr[0] = false;
-arr[1] = false;
+const [x, y, w, h] = input;
+const xDiff = w - x;
+const yDiff = h - y;
 
-console.log(arr);
+const arr = [xDiff, yDiff, x, y];
+arr.sort((a, b) => {
+  return a - b;
+});
 
-for (let m = 2; m <= b; m++) {
-  if (arr[m]) {
-    for (let n = 2; n <= b / m; n++) {
-      arr[m * n] = false;
-    }
-  }
-}
-for (let j = a; j <= b; j++) {
-  if (arr[j]) answer += j + "\n";
-}
-console.log(answer.trim());
+console.log(arr[0]);
