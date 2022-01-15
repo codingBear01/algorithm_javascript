@@ -1,34 +1,29 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim();
-const num = +input;
 
-const lines = [];
+let N = Number(input); // 원판의 갯수
+let count = 0;
+let answer = [];
 
-printStars(num);
-console.log(lines.join(""));
+// num : 원반의 개수
+// from : 출발지 기둥 번호
+// to : 목적지 기둥 번호
+// other : 나머지 기둥 번호
 
-function printStars(num) {
-  for (let i = 0; i < num; i++) {
-    for (let j = 0; j < num; j++) {
-      star(i, j, num);
-    }
-    lines.push("\n");
-  }
-}
-
-function star(i, j, num) {
-  if (i % 3 === 1 && j % 3 === 1) {
-    // (1,1), (1,4), (1,7)...
-    lines.push(" ");
+function Hanoi(num, from, other, to) {
+  if (num === 0) {
+    return;
   } else {
-    if (num === 1) {
-      lines.push("*");
-    } else {
-      // (3,3) = (1,1)이 되고,
-      // (3,4) = (1,1)이 된다.
-      // (9,9), (27,27)도 동일한 방식으로 재귀 호출된다.
-      star(parseInt(i / 3), parseInt(j / 3), parseInt(num / 3));
-    }
+    // 받아온 원반 갯수보다 하나 적은 원반들을 목적지가 아닌 곳으로 재귀적으로 이동
+    Hanoi(num - 1, from, to, other);
+    // 맨 아래 원반을 목적지로 이동시킴
+    answer.push([from, to]);
+    count++;
+    //다른 곳으로 옮겼던 원반들을 그 위에 얹음
+    Hanoi(num - 1, other, from, to);
   }
 }
+Hanoi(N, "1", "2", "3");
+console.log(count);
+console.log(answer.map((element) => element.join(" ")).join("\n"));
