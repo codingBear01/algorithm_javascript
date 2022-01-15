@@ -1,20 +1,22 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim().split("\n");
+let input = fs.readFileSync(filePath).toString().trim();
 
-const N = +input[0].split(" ").shift();
-const M = +input[0].split(" ").pop();
-const numArr = input[1].split(" ");
-let max = 0;
+const number = parseInt(input, 10);
+let result = 1;
 
-for (let i = 0; i < N - 2; i++) {
-  for (let j = i + 1; j < N - 1; j++) {
-    for (let k = j + 1; k < N; k++) {
-      let sum = +numArr[i] + +numArr[j] + +numArr[k];
-      if (sum > max && sum <= M) {
-        max = sum;
-      }
-    }
+for (let i = 1; i < number; i++) {
+  result = i;
+
+  const stringValue = i.toString();
+  for (let j = 0; j < stringValue.length; j++) {
+    result += parseInt(stringValue[j], 10);
+  }
+
+  if (result === number) {
+    console.log(i);
+    return;
   }
 }
-console.log(max);
+
+console.log(0);
