@@ -3,22 +3,58 @@ const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split("\n");
 
-function solution(input) {
-  [n, ...person] = input;
-  let cnt = [];
+let NM = input.shift().split(" ");
+let N = +NM.shift();
+let M = +NM.shift();
 
-  for (let i = 0; i < n; i++) {
-    let rank = 0;
+let white = [
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+];
+let black = [
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+  "BWBWBWBW",
+  "WBWBWBWB",
+];
 
-    for (let j = 0; j < n; j++) {
-      if (i === j) continue;
-      [aWeight, aTall] = person[i].split(" ");
-      [bWeight, bTall] = person[j].split(" ");
-
-      if (+aWeight < +bWeight && +aTall < +bTall) rank += 1;
-    }
-    cnt.push(rank + 1);
-  }
-  return cnt.join(" ");
+let board = [];
+for (let i = 0; i < N; i++) {
+  board[i] = input.shift().split("");
 }
-console.log(solution(input));
+
+let answer = 90;
+
+for (let i = 0; i <= N - 8; i++) {
+  for (let j = 0; j <= M - 8; j++) {
+    check(j, i);
+  }
+}
+
+function check(x, y) {
+  let checkWhite = 0;
+  let checkBlack = 0;
+
+  for (let i = y; i < y + 8; i++) {
+    for (let j = x; j < x + 8; j++) {
+      if (board[i][j] !== white[i - y][j - x]) checkWhite++;
+      if (board[i][j] !== black[i - y][j - x]) checkBlack++;
+    }
+  }
+
+  let min = checkBlack < checkWhite ? checkBlack : checkWhite;
+
+  if (min < answer) answer = min;
+}
+
+console.log(answer);
