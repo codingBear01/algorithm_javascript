@@ -1,22 +1,24 @@
+const { count } = require("console");
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs.readFileSync(filePath).toString().trim();
+let input = fs.readFileSync(filePath).toString().trim().split("\n");
 
-const number = parseInt(input, 10);
-let result = 1;
+function solution(input) {
+  [n, ...person] = input;
+  let cnt = [];
 
-for (let i = 1; i < number; i++) {
-  result = i;
+  for (let i = 0; i < n; i++) {
+    let rank = 0;
 
-  const stringValue = i.toString();
-  for (let j = 0; j < stringValue.length; j++) {
-    result += parseInt(stringValue[j], 10);
+    for (let j = 0; j < n; j++) {
+      if (i === j) continue;
+      [aWeight, aTall] = person[i].split(" ");
+      [bWeight, bTall] = person[j].split(" ");
+
+      if (+aWeight < +bWeight && +aTall < +bTall) rank += 1;
+    }
+    cnt.push(rank + 1);
   }
-
-  if (result === number) {
-    console.log(i);
-    return;
-  }
+  return cnt.join(" ");
 }
-
-console.log(0);
+console.log(solution(input));
