@@ -87,62 +87,96 @@ function sol(input) {
 }
 console.log(sol(input));
 
-// let N = +input.shift();
-// let arr = [];
-// const numMap = {};
+// 최빈값
+// 저는 최빈값을 구하기 위해 Map을 사용해 Key와 밸류를 담은 후 이미 있는 Key(중복되는 값)일 경우에는 Value를 증가시키는 방법으로 Map에 저장했습니다.
+const checkValueMap = new Map();
+for (let i = 0; i < arr.length; i++) {
+  if (checkValueMap.has(arr[i])) {
+    checkValueMap.set(arr[i], checkValueMap.get(arr[i]) + 100);
+  } else {
+    checkValueMap.set(arr[i], 0);
+  }
+}
+// 그 다음 for문을 통해 가장 높은 Value를 max에 담고 다시 전체 Map을 탐색해 Max값을 arr에 담아줬습니다.
+let max = 0;
+let checkValueArr = [];
 
-// // 배열에 숫자 담기
-// for (let i = 0; i < N; i++) {
-//   arr.push(+input[i]);
-// }
+for (let value of checkValueMap.keys()) {
+  if (max < checkValueMap.get(value)) {
+    max = checkValueMap.get(value);
+  }
+}
 
-// const sortedArr = arr.sort((a, b) => a - b);
+for (let value of checkValueMap.keys()) {
+  if (max === checkValueMap.get(value)) {
+    checkValueArr.push(value);
+  }
+}
+// 그 후 최종적으로 조건에 맞춰 최빈값이 두개 이상인 경우 2번째로 큰 수를 담아줬습니다.
+let mostValue = 0;
+if (checkValueArr.length > 1) {
+  mostValue = checkValueArr[1];
+} else {
+  mostValue = checkValueArr[0];
+}
 
-// // 산술평균 구하기
-// function avg(nums) {
-//   let sum = 0;
+// 내 풀이(오류남 ㅅㅂ)
+let N = +input.shift();
+let arr = [];
+const numMap = {};
 
-//   for (let i = 0; i < nums.length; i++) {
-//     sum += nums[i];
-//   }
-//   return Math.round((sum / N).toFixed(1));
-// }
+// 배열에 숫자 담기
+for (let i = 0; i < N; i++) {
+  arr.push(+input[i]);
+}
 
-// // 중앙값
-// let middleNum = Math.floor(sortedArr.length / 2);
+const sortedArr = arr.sort((a, b) => a - b);
 
-// //최빈값
+// 산술평균 구하기
+function avg(nums) {
+  let sum = 0;
 
-// for (let num of sortedArr) {
-//   if (numMap[num]) {
-//     numMap[num] = numMap[num] + 1;
-//   } else {
-//     numMap[num] = 1;
-//   }
-// }
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+  }
+  return Math.round((sum / N).toFixed(1));
+}
 
-// let hitMaxNum = Math.max.apply(null, Object.values(numMap));
-// let hitMaxNumArr = [];
-// let hitMaxNumResult = 0;
-// for (let numKey in numMap) {
-//   if (numMap[numKey] === hitMaxNum) {
-//     hitMaxNumArr.push(numKey);
-//   }
-// }
+// 중앙값
+let middleNum = Math.floor(sortedArr.length / 2);
 
-// if (hitMaxNumArr.length > 1) {
-//   hitMaxNumArr = hitMaxNumArr.sort((a, b) => a - b);
-//   hitMaxNumResult = hitMaxNumArr[1];
-// } else {
-//   hitMaxNumResult = hitMaxNumArr[0];
-// }
+//최빈값
 
-// // 범위
-// let min = sortedArr[0];
-// let max = sortedArr[sortedArr.length - 1];
-// let range = max - min;
+for (let num of sortedArr) {
+  if (numMap[num]) {
+    numMap[num] = numMap[num] + 1;
+  } else {
+    numMap[num] = 1;
+  }
+}
 
-// console.log(avg(sortedArr));
-// console.log(sortedArr[middleNum]);
-// console.log(+hitMaxNumResult);
-// console.log(range);
+let hitMaxNum = Math.max.apply(null, Object.values(numMap));
+let hitMaxNumArr = [];
+let hitMaxNumResult = 0;
+for (let numKey in numMap) {
+  if (numMap[numKey] === hitMaxNum) {
+    hitMaxNumArr.push(numKey);
+  }
+}
+
+if (hitMaxNumArr.length > 1) {
+  hitMaxNumArr = hitMaxNumArr.sort((a, b) => a - b);
+  hitMaxNumResult = hitMaxNumArr[1];
+} else {
+  hitMaxNumResult = hitMaxNumArr[0];
+}
+
+// 범위
+let min = sortedArr[0];
+let max = sortedArr[sortedArr.length - 1];
+let range = max - min;
+
+console.log(avg(sortedArr));
+console.log(sortedArr[middleNum]);
+console.log(+hitMaxNumResult);
+console.log(range);
