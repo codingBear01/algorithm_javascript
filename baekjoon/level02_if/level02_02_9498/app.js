@@ -1,22 +1,19 @@
 const fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
-let input = fs
-  .readFileSync(filePath)
-  .toString()
-  .trim()
-  .split(" ")
-  .map((val) => +val);
+let input = fs.readFileSync(filePath).toString().trim();
+input = +input;
 
 function solution(num) {
-  const A = num[0];
-  const B = num[1];
-
-  if (A > B) {
-    console.log(">");
-  } else if (A < B) {
-    console.log("<");
+  if (num >= 90) {
+    console.log("A");
+  } else if (num <= 89 && num >= 80) {
+    console.log("B");
+  } else if (num <= 79 && num >= 70) {
+    console.log("C");
+  } else if (num <= 69 && num >= 60) {
+    console.log("D");
   } else {
-    console.log("==");
+    console.log("F");
   }
 }
 
