@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { listenerCount } = require("process");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split("\n");
 
@@ -20,7 +19,7 @@ function solution(N) {
   }
 }
 
-// 라매개발자 ver.
+// ----- 라매개발자 ver.
 // function solution(N) {
 //   for (let line = 1; line <= N; line++) {
 //     const starCnt = line;
