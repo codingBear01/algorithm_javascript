@@ -13,13 +13,19 @@ solution(testNumArr);
 function solution(numArr) {
   let A = numArr[0][0];
   let B = numArr[0][1];
-  let i = 1;
+  let i = 0;
 
-  while (A !== 0 || B !== 0) {
-    console.log(A + B);
+  while (i < numArr.length) {
     A = numArr[i][0];
     B = numArr[i][1];
-    i++;
+
+    if (A === 0 || B === 0) {
+      break;
+    } else {
+      i++;
+    }
+
+    console.log(A + B);
   }
 }
 
