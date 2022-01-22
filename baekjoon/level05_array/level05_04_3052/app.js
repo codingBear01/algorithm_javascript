@@ -18,4 +18,21 @@ function solution(numArr) {
   console.log(result.length);
 }
 
-// ----- 라매개발자 ver.
+/* ----- 라매개발자 ver.
+
+function solution(items) {
+  const ans = Array(42).fill(0);
+
+  for (let i = 0; i < items.length; i++) {
+    const nowChar = +items[i] % 42;
+    ans[nowChar]++;
+  }
+
+  let cnt = 0;
+  for (let i = 0; i < ans.length; i++) {
+    if (ans[i] !== 0) {
+      cnt++;
+    }
+  }
+  console.log(cnt);
+}*/
