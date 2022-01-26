@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { join } = require("path/posix");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
 let input = fs.readFileSync(filePath).toString().trim().split("\n");
 
