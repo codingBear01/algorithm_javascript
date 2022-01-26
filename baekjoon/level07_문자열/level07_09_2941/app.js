@@ -24,7 +24,6 @@ function solution(str) {
 
     if (c === "d") {
       let nextC = str[i + 1];
-
       if (nextC === "-") {
         i = i + 1;
         continue;
