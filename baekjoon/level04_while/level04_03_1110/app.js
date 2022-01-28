@@ -22,3 +22,23 @@ function solution(N) {
   }
   console.log(cnt);
 }
+
+/* 
+function solution(N) {
+  let temp = N
+  let cnt = 0;
+
+  while (true) {
+    cnt++;
+    let left = Math.floor(temp / 10);  
+    let right = Math.floor(temp % 10);
+    temp = right * 10 + (left + right) % 10;
+
+    if (temp === N) {
+      break;
+    }
+  }
+  console.log(cnt);
+}
+
+*/
