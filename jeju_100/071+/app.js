@@ -8,7 +8,7 @@
 */
 
 /*
-데이터
+입력
 graph = {'E': ['D', 'A'],
          'F': ['D'],
          'A': ['E', 'C', 'B'],
@@ -18,7 +18,7 @@ graph = {'E': ['D', 'A'],
 
 
 출력
-E D F A C B
+[ 'E', 'A', 'B', 'C', 'D', 'F' ]
 */
 
 /*기능 요구사항
@@ -33,42 +33,45 @@ graph = {
   F: ["D"],
 };
 
-function dfs(graph, start) {
-  let visited = [];
-  let stack = [start];
+// function dfs(graph, start) {
+//   let visited = [];
+//   let stack = [start];
 
-  while (stack.length !== 0) {
-    let n = stack.pop();
-    if (!visited.includes(n)) {
-      visited.push(n);
-      let sub = graph[n].filter((x) => !visited.includes(x));
-      for (let i of sub) {
-        stack.push(i);
-      }
-    }
-  }
-  return visited;
-}
-
-console.log(dfs(graph, "E"));
-
-// const dfs = (graph, startNode) => {
-//   let needVisitStack = []; // 탐색을 해야 할 노드들
-//   let visitedQueue = []; // 탐색을 마친 노드들
-//   needVisitStack.push(startNode);
-
-//   // 탐색을 해야 할 노드가 남아 있다면
-//   while (needVisitStack.length !== 0) {
-//     const node = needVisitStack.pop();
-//     if (!visitedQueue.includes(node)) {
-//       visitedQueue.push(node);
-//       needVisitStack = [...needVisitStack, ...graph[node]];
+//   while (stack.length !== 0) {
+//     let n = stack.pop();
+//     //visited에 n이 포함되어 있지 않다면
+//     if (!visited.includes(n)) {
+//       //visited에 n을 push
+//       visited.push(n);
+//       //sub는 graph[n]에 visited에 포함되어 있지 않은 x만을 걸러서 배열로 반환
+//       let sub = graph[n].filter((x) => !visited.includes(x));
+//       for (let i of sub) {
+//         stack.push(i);
+//       }
 //     }
 //   }
+//   return visited;
+// }
 
-//   return visitedQueue;
-// };
-// console.log(dfs(graph, "A"));
+// console.log(dfs(graph, "E"));
+
+const dfs = (graph, startNode) => {
+  let needVisitStack = []; // 탐색을 해야 할 노드들
+  let visitedQueue = []; // 탐색을 마친 노드들
+  needVisitStack.push(startNode);
+
+  // 탐색을 해야 할 노드가 남아 있다면
+  while (needVisitStack.length !== 0) {
+    const node = needVisitStack.pop();
+    if (!visitedQueue.includes(node)) {
+      visitedQueue.push(node);
+      needVisitStack = [...needVisitStack, ...graph[node]];
+    }
+  }
+
+  return visitedQueue;
+};
+console.log(dfs(graph, "E"));
 
 /*답안
  */
