@@ -8,7 +8,7 @@ const input = fs
   .map((val) => +val);
 
 /* heap 활용 풀이*/
-let [n, ...list] = input;
+const [n, ...list] = input;
 
 class Heap {
   constructor() {
