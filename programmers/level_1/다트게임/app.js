@@ -12,6 +12,7 @@ function solution(dartResult) {
   let answer = 0;
   const temp = [];
   let result = [];
+
   for (let i = 0; i < dartResult.length; i++) {
     if (dartResult[i] === '1' && dartResult[i + 1] === '0') {
       temp.push(10);
@@ -23,6 +24,7 @@ function solution(dartResult) {
     }
   }
   // temp = [1, 'S', 2, 'D','*', 3, 'T']
+
   for (let i = 0; i < temp.length; i++) {
     if (temp[i] === 'S') {
       result.push(Math.pow(temp[i - 1], 1));
@@ -37,6 +39,7 @@ function solution(dartResult) {
     }
   }
   // result = [1, 4, '*', 27]
+
   for (let i = 0; i < result.length; i++) {
     if (result[i] === '#') {
       result[i - 1] = result[i - 1] * -1;
@@ -55,12 +58,15 @@ function solution(dartResult) {
     }
   }
   // result = [2, 8, '', 27]
+
   for (let i = 0; i < result.length; i++) {
     if (result[i] === '') result[i] = 0;
     answer += result[i];
   }
   // result = [2, 8, 0, 27]
+
   return answer; // 37
+
   /* regular expressions ver. */
   // const answer = [];
   // const dartSetsets = dartResult.match(/\d{1,2}[SDT][*#]?/g);
