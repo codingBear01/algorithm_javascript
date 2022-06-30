@@ -5,8 +5,7 @@ const arr2 = [30, 1, 21, 17, 28];
 // const arr1 = [46, 33, 33, 22, 31, 50];
 // const arr2 = [27, 56, 19, 14, 14, 10];
 
-console.log(solution(n, arr1, arr2));
-
+solution(n, arr1, arr2);
 function solution(n, arr1, arr2) {
   const answer = [];
   for (let i = 0; i < n; i++) {
@@ -42,6 +41,7 @@ function solution(n, arr1, arr2) {
   return answer;
 
   // const answer = [];
+
   // for (let i = 0; i < n; i++) {
   //   let result = '';
   // const binary1 = arr1[i].toString(2).padStart(n, 0);
@@ -57,5 +57,13 @@ function solution(n, arr1, arr2) {
   //   }
   //   answer.push(result);
   // }
+
   // return answer;
+
+  // return arr1.map((v, i) =>
+  //   (v | arr2[i])
+  //     .toString(2)
+  //     .padStart(n, 0)
+  //     .replace(/1|0/g, (a) => (+a ? '#' : ' '))
+  // );
 }
