@@ -42,18 +42,18 @@ function solution(dartResult) {
 
   for (let i = 0; i < result.length; i++) {
     if (result[i] === '#') {
-      result[i - 1] = result[i - 1] * -1;
+      result[i - 1] *= -1;
       result[i] = '';
     } else if (result[i] === '*' && i === 1) {
-      result[i - 1] = result[i - 1] * 2;
+      result[i - 1] *= 2;
       result[i] = '';
     } else if (result[i] === '*' && typeof result[i - 2] !== 'number') {
-      result[i - 1] = result[i - 1] * 2;
-      result[i - 3] = result[i - 3] * 2;
+      result[i - 1] *= 2;
+      result[i - 3] *= 2;
       result[i] = '';
     } else if (result[i] === '*') {
-      result[i - 1] = result[i - 1] * 2;
-      result[i - 2] = result[i - 2] * 2;
+      result[i - 1] *= 2;
+      result[i - 2] *= 2;
       result[i] = '';
     }
   }
