@@ -8,9 +8,9 @@ console.log(solution(absolutes, signs));
 function solution(absolutes, signs) {
   let answer = 0;
 
-  for (let i = 0; i < signs.length; i++) {
-    signs[i] ? (answer += absolutes[i]) : (answer += absolutes[i] * -1);
-  }
+  signs.forEach((sign, i) =>
+    sign ? (answer += absolutes[i]) : (answer += absolutes[i] * -1)
+  );
 
   return answer;
 }
