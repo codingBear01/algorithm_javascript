@@ -5,18 +5,19 @@ const arr2 = [30, 1, 21, 17, 28];
 // const arr1 = [46, 33, 33, 22, 31, 50];
 // const arr2 = [27, 56, 19, 14, 14, 10];
 
-solution(n, arr1, arr2);
+console.log(solution(n, arr1, arr2));
+
 function solution(n, arr1, arr2) {
   const answer = [];
 
   for (let i = 0; i < n; i++) {
     let result = '';
-    let binary1 = arr1[i]
+    const binary1 = arr1[i]
       .toString(2)
       .padStart(n, 0)
       .replace(/0/g, ' ')
       .replace(/1/g, '#');
-    let binary2 = arr2[i]
+    const binary2 = arr2[i]
       .toString(2)
       .padStart(n, 0)
       .replace(/0/g, ' ')
