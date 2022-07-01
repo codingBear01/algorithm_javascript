@@ -8,13 +8,9 @@ const arr2 = [30, 1, 21, 17, 28];
 solution(n, arr1, arr2);
 function solution(n, arr1, arr2) {
   const answer = [];
-  for (let i = 0; i < n; i++) {
-    answer.push([]);
-  }
-  let numArr1 = arr1;
-  let numArr2 = arr2;
 
   for (let i = 0; i < n; i++) {
+    let result = '';
     let binary1 = arr1[i]
       .toString(2)
       .padStart(n, 0)
@@ -26,18 +22,11 @@ function solution(n, arr1, arr2) {
       .replace(/0/g, ' ')
       .replace(/1/g, '#');
 
-    numArr1[i] = binary1;
-    numArr2[i] = binary2;
-
-    for (let j = 0; j < n; j++) {
-      numArr1[i][j] !== numArr2[i][j]
-        ? answer[i].push('#')
-        : answer[i].push(numArr1[i][j]);
+    for (let j = 0; j < binary1.length; j++) {
+      binary1[j] !== binary2[j] ? (result += '#') : (result += binary1[j]);
     }
-
-    answer[i] = answer[i].join('');
+    answer.push(result);
   }
-
   return answer;
 
   // const answer = [];
