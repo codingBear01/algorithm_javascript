@@ -31,30 +31,21 @@ function solution(N, stages) {
     remainedUsers = temp - stageInfo[i].challenger;
   }
 
-  const sortedInfo = stageInfo.sort((a, b) => {
-    if (a.rate === b.rate) {
-      return a.stage - b.stage;
-    } else {
-      return b.rate - a.rate;
-    }
-  });
+  stageInfo.sort((a, b) => b.rate - a.rate);
 
-  return sortedInfo.map((val) => val.stage);
+  return stageInfo.map((val) => val.stage);
 
-  // const answer = [];
-  // let remainedUsers = stages.length;
+  // const answer = []
+  // let remainedUsers = stages.length
 
   // for (let i = 1; i <= N; i++) {
-  //   const challengers = stages.filter((challenger) => challenger === i).length;
-  //   const failureRate = challengers / remainedUsers;
-  //   remainedUsers -= challengers;
-  //   answer.push({ stage: i, rate: failureRate });
+  //     const challengers = stages.filter(user => user === i).length
+  //     const failureRates = challengers / remainedUsers
+  //     remainedUsers -= challengers
+  //     answer.push({stage: i, rate: failureRates})
   // }
 
-  // answer.sort((a, b) => {
-  //   if (a.rate === b.rate) return a.stage - b.stage;
-  //   else return b.rate - a.rate;
-  // });
+  // answer.sort((a, b) => b.rate - a.rate)
 
-  // return answer.map((obj) => obj.stage);
+  // return answer.map(obj => obj.stage)
 }
