@@ -1,6 +1,8 @@
 const input = [1, 2, 3, 4];
 // const input = [1,2,7,6,4]
+
 console.log(solution(input));
+
 function solution(nums) {
   const result = getCombinations(nums, 3);
   const combinations = [...result];
