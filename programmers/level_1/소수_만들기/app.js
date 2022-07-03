@@ -5,47 +5,26 @@ console.log(solution(input));
 
 function solution(nums) {
   /* Recursion Ver.*/
-  //   const result = getCombinations(nums, 3);
-  //   const combinations = [...result];
-  //   const answer = [];
-  //   for (let i = 0; i < combinations.length; i++) {
-  //     let sum = 0;
-  //     for (let j = 0; j < combinations[i].length; j++) {
-  //       sum += combinations[i][j];
-  //     }
-  //     let remain = 0;
-  //     for (let j = 1; j <= sum; j++) {
-  //       if (sum % j === 0) {
-  //         remain++;
-  //       }
-  //     }
-  //     if (remain === 2) answer.push(sum);
-  //   }
-  //   return answer.length;
-  // }
-  // function getCombinations(arr, selectNumber) {
-  //   const results = [];
-  //   if (selectNumber === 1) return arr.map((value) => [value]);
-  //   // 1개씩 택할 때, 바로 모든 배열의 원소 return
-  //   arr.forEach((fixed, index, origin) => {
-  //     const rest = origin.slice(index + 1); // 해당하는 fixed를 제외한 나머지 뒤
-  //     const combinations = getCombinations(rest, selectNumber - 1); // 나머지에 대해서 조합을 구한다.
-  //     const attached = combinations.map((combination) => [fixed, ...combination]);
-  //     //  돌아온 조합에 떼 놓은(fixed) 값 붙이기
-  //     results.push(...attached); // 배열 spread syntax 로 모두다 push
-  //   });
-  //   return results; // 결과 담긴 results return
+  // let primeNumCnts = 0;
+
+  // const combinationArr = combinations(nums, 3);
+
+  // combinationArr.forEach((el) => {
+  //   let tmp = el.reduce((acc, curr) => acc + curr);
+
+  //   if (isPrime(tmp)) primeNumCnts++;
+  // });
+
+  // return primeNumCnts;
 
   /* For Loop Ver. */
-  let len = nums.length,
-    answer = 0;
+  const len = nums.length;
+  let answer = 0;
 
   for (let i = 0; i < len; i++) {
     for (let j = i + 1; j < len; j++) {
       for (let k = j + 1; k < len; k++) {
-        if (isPrime(nums[i] + nums[j] + nums[k])) {
-          answer++;
-        }
+        if (isPrime(nums[i] + nums[j] + nums[k])) answer++;
       }
     }
   }
@@ -53,12 +32,28 @@ function solution(nums) {
   return answer;
 }
 
-function isPrime(n) {
-  for (let i = 2; i <= Math.sqrt(n); i++) {
-    if (n % i === 0) {
-      return false;
-    }
+function isPrime(num) {
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) return false;
   }
-
+  // for (let i = 2; i < Math.sqrt(num); i++) {
+  //   if (num % i === 0) return false;
+  // }
   return true;
+}
+
+function combinations(arr, selectNum) {
+  const result = [];
+
+  if (selectNum === 1) return arr.map((val) => [val]);
+  // console.log('arr', arr);
+  arr.forEach((fixed, idx, origin) => {
+    const rest = origin.slice(idx + 1);
+    const reCombinations = combinations(rest, selectNum - 1);
+    const attached = reCombinations.map((combination) => {
+      return [fixed, ...combination];
+    });
+    result.push(...attached);
+  });
+  return result;
 }
