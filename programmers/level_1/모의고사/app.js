@@ -11,18 +11,18 @@ function solution(answers) {
   ];
 
   /* My Solution */
-  // for (let i = 0; i < answers.length; i++) {
-  //   for (const supoja of supojas) {
-  //     if (answers[i] === supoja.arr[i % supoja.arr.length]) supoja.cnt++;
-  //   }
-  // }
+  for (let i = 0; i < answers.length; i++) {
+    for (const supoja of supojas) {
+      if (answers[i] === supoja.arr[i % supoja.arr.length]) supoja.cnt++;
+    }
+  }
 
   /* Filter Ver. */
-  for (const supoja of supojas) {
-    supoja.cnt = answers.filter(
-      (val, i) => val === supoja.arr[i % supoja.arr.length]
-    ).length;
-  }
+  // for (const supoja of supojas) {
+  //   supoja.cnt = answers.filter(
+  //     (val, i) => val === supoja.arr[i % supoja.arr.length]
+  //   ).length;
+  // }
 
   const maxAns = Math.max(supojas[0].cnt, supojas[1].cnt, supojas[2].cnt);
 
