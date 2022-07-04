@@ -43,40 +43,36 @@ function solution(participant, completion) {
   //   else return true;
   // });
   /* Obj Ver. */
-  // const obj = {};
-  // for (const p of participant) {
-  //   obj[p] = obj[p] ? obj[p] + 1 : 1;
-  // }
-  // for (const c of completion) {
-  //   obj[c] -= 1;
-  // }
-  // for (const key in obj) {
-  //   if (obj[key] !== 0) return key;
-  // }
+  const obj = {};
+  for (const p of participant) {
+    obj[p] = obj[p] ? obj[p] + 1 : 1;
+  }
+  for (const c of completion) {
+    obj[c] -= 1;
+  }
+  for (const key in obj) {
+    if (obj[key] !== 0) return key;
+  }
   /* Map Ver. */
-  // const map = new Map();
-  // for (const p of participant) {
-  //   if (!map.get(p)) map.set(p, 1);
-  //   else map.set(p, map.get(p) + 1);
-  // }
-  // for (const c of completion) {
-  //   if (map.get(c)) map.set(c, map.get(c) - 1);
-  // }
-  // for (const p of participant) {
-  //   if (map.get(p) !== 0) return p;
-  // }
   const map = new Map();
-
-  for (let i = 0; i < participant.length; i++) {
-    let a = participant[i],
-      b = completion[i];
-
-    map.set(a, (map.get(a) || 0) + 1);
-    map.set(b, (map.get(b) || 0) - 1);
+  for (const p of participant) {
+    if (!map.get(p)) map.set(p, 1);
+    else map.set(p, map.get(p) + 1);
   }
-  for (let [k, v] of map) {
-    if (v !== 0) return k;
+  for (const c of completion) {
+    if (map.get(c)) map.set(c, map.get(c) - 1);
   }
-
-  return 'nothing';
+  for (const p of participant) {
+    if (map.get(p) !== 0) return p;
+  }
+  // const map = new Map();
+  // for (let i = 0; i < participant.length; i++) {
+  //   let a = participant[i],
+  //     b = completion[i];
+  //   map.set(a, (map.get(a) || 0) + 1);
+  //   map.set(b, (map.get(b) || 0) - 1);
+  // }
+  // for (let [k, v] of map) {
+  //   if (v !== 0) return k;
+  // }
 }
