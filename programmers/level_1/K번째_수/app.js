@@ -8,25 +8,25 @@ const commands = [
 console.log(solution(array, commands));
 
 function solution(array, commands) {
-  // const answer = [];
+  const answer = [];
 
-  // for (let idx = 0; idx < commands.length; idx++) {
-  //   const i = commands[idx][0]; // 자르기 시작 idx
-  //   const j = commands[idx][1]; // 자르기 끝 idx
-  //   const k = commands[idx][2]; // 반환값 idx
+  for (let idx = 0; idx < commands.length; idx++) {
+    const i = commands[idx][0]; // 자르기 시작 idx
+    const j = commands[idx][1]; // 자르기 끝 idx
+    const k = commands[idx][2]; // 반환값 idx
 
-  //   const result = array.slice(i - 1, j).sort((a, b) => a - b)[k - 1];
-  //   answer.push(result);
-  // }
+    const result = array.slice(i - 1, j).sort((a, b) => a - b)[k - 1];
+    answer.push(result);
+  }
 
-  // return answer;
+  return answer;
 
-  return commands.map((command) => {
-    const [startIdx, endIdx, returnIdx] = command;
-    const answer = array
-      .filter((value, fIndex) => fIndex >= startIdx - 1 && fIndex <= endIdx - 1)
-      .sort((a, b) => a - b)[returnIdx - 1];
+  // return commands.map((command) => {
+  //   const [startIdx, endIdx, returnIdx] = command;
+  //   const answer = array
+  //     .filter((value, fIndex) => fIndex >= startIdx - 1 && fIndex <= endIdx - 1)
+  //     .sort((a, b) => a - b)[returnIdx - 1];
 
-    return answer;
-  });
+  //   return answer;
+  // });
 }
