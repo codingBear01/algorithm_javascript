@@ -5,31 +5,31 @@ console.log(solution(input));
 
 function solution(nums) {
   /* Recursion Ver.*/
-  // let primeNumCnts = 0;
+  let primeNumCnts = 0;
 
-  // const combinationArr = combinations(nums, 3);
+  const combinationArr = combinations(nums, 3);
 
-  // combinationArr.forEach((el) => {
-  //   let tmp = el.reduce((acc, curr) => acc + curr);
+  combinationArr.forEach((el) => {
+    let tmp = el.reduce((acc, curr) => acc + curr);
 
-  //   if (isPrime(tmp)) primeNumCnts++;
-  // });
+    if (isPrime(tmp)) primeNumCnts++;
+  });
 
-  // return primeNumCnts;
+  return primeNumCnts;
 
   /* For Loop Ver. */
-  const len = nums.length;
-  let answer = 0;
+  // const len = nums.length;
+  // let answer = 0;
 
-  for (let i = 0; i < len; i++) {
-    for (let j = i + 1; j < len; j++) {
-      for (let k = j + 1; k < len; k++) {
-        if (isPrime(nums[i] + nums[j] + nums[k])) answer++;
-      }
-    }
-  }
+  // for (let i = 0; i < len; i++) {
+  //   for (let j = i + 1; j < len; j++) {
+  //     for (let k = j + 1; k < len; k++) {
+  //       if (isPrime(nums[i] + nums[j] + nums[k])) answer++;
+  //     }
+  //   }
+  // }
 
-  return answer;
+  // return answer;
 }
 
 function isPrime(num) {
