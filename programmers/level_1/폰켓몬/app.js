@@ -6,20 +6,20 @@ console.log(solution(nums));
 
 function solution(nums) {
   /* Solution 1. - My Solution */
-  // let answer = [];
-  // const n = nums.length / 2;
+  let answer = [];
+  const n = nums.length / 2;
 
-  // for (let i = 0; i < nums.length; i++) {
-  //   while (answer.length < n) {
-  //     if (!answer.includes(nums[i])) {
-  //       answer.push(nums[i]);
-  //     } else if (answer.includes(nums[i])) {
-  //       i++;
-  //     }
-  //   }
-  // }
+  for (let i = 0; i < nums.length; i++) {
+    while (answer.length < n) {
+      if (!answer.includes(nums[i])) {
+        answer.push(nums[i]);
+      } else if (answer.includes(nums[i])) {
+        i++;
+      }
+    }
+  }
 
-  // return answer.filter((ans) => ans !== undefined).length;
+  return answer.filter((ans) => ans !== undefined).length;
 
   /* Solution 2. */
   // const answer = [];
@@ -56,18 +56,18 @@ function solution(nums) {
   // return phonekemons.length < n ? phonekemons.length : n;
 
   /* Solution 6. - Object */
-  const phonekemons = {};
-  const n = nums.length / 2;
+  // const phonekemons = {};
+  // const n = nums.length / 2;
 
-  for (const num of nums) {
-    if (!phonekemons[num]) {
-      phonekemons[num] = 1;
-    } else {
-      phonekemons[num]++;
-    }
-  }
+  // for (const num of nums) {
+  //   if (!phonekemons[num]) {
+  //     phonekemons[num] = 1;
+  //   } else {
+  //     phonekemons[num]++;
+  //   }
+  // }
 
-  return Object.keys(phonekemons).length > n
-    ? n
-    : Object.keys(phonekemons).length;
+  // return Object.keys(phonekemons).length > n
+  //   ? n
+  //   : Object.keys(phonekemons).length;
 }
