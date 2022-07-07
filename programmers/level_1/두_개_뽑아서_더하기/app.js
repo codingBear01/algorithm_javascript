@@ -5,27 +5,27 @@ console.log(solution(numbers));
 
 function solution(numbers) {
   /* My Solution */
-  const answer = [];
-  numbers.sort((a, b) => a - b);
-
-  for (let i = 0; i < numbers.length; i++) {
-    for (let j = i + 1; j < numbers.length; j++) {
-      const sum = numbers[i] + numbers[j];
-      if (!answer.includes(sum)) answer.push(sum);
-    }
-  }
-  return answer.sort((a, b) => a - b);
-
-  /* Set Ver. */
-  // let answer = [];
+  // const answer = [];
   // numbers.sort((a, b) => a - b);
 
   // for (let i = 0; i < numbers.length; i++) {
   //   for (let j = i + 1; j < numbers.length; j++) {
   //     const sum = numbers[i] + numbers[j];
-  //     answer.push(sum);
+  //     if (!answer.includes(sum)) answer.push(sum);
   //   }
   // }
+  // return answer.sort((a, b) => a - b);
 
-  // return (answer = [...new Set(answer)].sort((a, b) => a - b));
+  /* Set Ver. */
+  let answer = [];
+  numbers.sort((a, b) => a - b);
+
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      const sum = numbers[i] + numbers[j];
+      answer.push(sum);
+    }
+  }
+
+  return (answer = [...new Set(answer)].sort((a, b) => a - b));
 }
