@@ -7,14 +7,14 @@ console.log(solution(n, m));
 
 function solution(n, m) {
   /* Loop Ver. */
-  // const gcd = getGcd(n, m);
-  // const lcm = getLcm(n, m);
-  // return [gcd, lcm];
+  const gcd = getGcd(n, m);
+  const lcm = getLcm(n, m);
+  return [gcd, lcm];
 
   /* Euclidean Algorithm */
-  const gcd = (n, m) => (n % m === 0 ? m : gcd(m, n % m));
-  const lcm = (n, m) => (n * m) / gcd(n, m);
-  return [gcd(n, m), lcm(n, m)];
+  // const gcd = (n, m) => (n % m === 0 ? m : gcd(m, n % m));
+  // const lcm = (n, m) => (n * m) / gcd(n, m);
+  // return [gcd(n, m), lcm(n, m)];
 }
 
 function getGcd(n, m) {
